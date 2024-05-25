@@ -1,67 +1,73 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Happy Birthday</title>
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css'><link rel="stylesheet" href="style.css">
-
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css'>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="wrapper">
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Happy Birthday</title>
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css'>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <div id="wrapper">
-      <div id="wish">
-        <div>H</div>
-        <div>A</div>
-        <div>P</div>
-        <div>P</div>
-        <div>Y</div>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <div>B</div>
-        <div>I</div>
-        <div>R</div>
-        <div>T</div>
-        <div>H</div>
-        <div>D</div>
-        <div>A</div>
-        <div>Y</div>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <div>N</div>
-        <div>I</div>
-        <div>N</div>
-        <div>D</div>
-        <div>I</div>
-      </div>
-      <div id="present">
-        <img src="https://media.tenor.com/images/80b3edbf059ce9f4c86282d6f7774b16/tenor.gif" id="cat" />
-        <div id="box"></div>
-        <div id="top">
-          <img src="http://pngimg.com/uploads/ribbon/ribbon_PNG1547.png" />
-        </div>
-      </div>
+  <div id="wrapper">
+    <div id="wish">
+      <div>H</div>
+      <div>A</div>
+      <div>P</div>
+      <div>P</div>
+      <div>Y</div>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <div>B</div>
+      <div>I</div>
+      <div>R</div>
+      <div>T</div>
+      <div>H</div>
+      <div>D</div>
+      <div>A</div>
+      <div>Y</div>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <div>N</div>
+      <div>I</div>
+      <div>N</div>
+      <div>D</div>
+      <div>I</div>
     </div>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-    <script src="script.js"></script>
-  </body>
-  </html>
-  
-  <div id="present">
-    <img src="https://media.tenor.com/images/80b3edbf059ce9f4c86282d6f7774b16/tenor.gif" id="cat" />
-    <div id="box"></div>
-    <div id="top">
-      <img src="http://pngimg.com/uploads/ribbon/ribbon_PNG1547.png" />
+    <div id="present">
+      <img src="https://media.tenor.com/images/80b3edbf059ce9f4c86282d6f7774b16/tenor.gif" id="cat" />
+      <div id="box"></div>
+      <div id="top">
+        <img src="http://pngimg.com/uploads/ribbon/ribbon_PNG1547.png" />
+      </div>
     </div>
   </div>
-</div>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script><script  src="script.js"></script>
-
+  <audio id="song" src="pp/song.mp3"></audio> <!-- Add your audio file path here -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+  <script>
+    $(document).ready(function(){
+      $("#present").addClass("animated bounceInDown");
+      $("#present").hover(function(){
+          $("#present #top").addClass("animated bounce");
+      }, function(){
+          $("#present #top").removeClass("animated bounce");
+      });
+      $("#present").on("click", function(){
+        $("#present #top").removeClass("animated bounce");
+        $("#present #top").addClass("animated bounceOutUp");
+        $(this).unbind("click");
+        $(this).unbind("mouseleave");
+        setTimeout(function(){
+          $("#present #cat").css("top", "-160px");
+        }, 1000);
+        $("#wish").children("div").each(function(index){
+          setTimeout(bounceIn.bind(null, $(this)), 2500 + index * 100);
+        });
+        $("#song")[0].play(); // Play the audio when the present is clicked
+      });
+      function bounceIn(el){
+        el.addClass("animated bounceInDown swing");
+        setTimeout(function(){
+          el.removeClass("bounceInDown").addClass("swing");
+        }, 1000);
+      }
+    });
+  </script>
 </body>
 </html>

@@ -14,13 +14,14 @@ $(document).ready(function(){
       $("#present #cat").css("top", "-160px");
     }, 1000);
     $("#wish").children("div").each(function(index){
-      setTimeout(bounceIn.bind(null, $(this)), 2500+index*100)
+      setTimeout(bounceIn.bind(null, $(this)), 2500 + index * 100);
     });
+    $("#song")[0].play(); // Play the audio when the present is clicked
   });
   function bounceIn(el){
     el.addClass("animated bounceInDown swing");
     setTimeout(function(){
-      el.removeClass("bounceInDown").addClass("swing")
+      el.removeClass("bounceInDown").addClass("swing");
     }, 1000);
   }
 });
